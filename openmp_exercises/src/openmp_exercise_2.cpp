@@ -42,9 +42,7 @@ double array_sum_atomic_parallel() {
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    #pragma omp parallel for
     for (int i = 0; i < N; ++i) {
-        #pragma omp atomic
         sum += data[i];
     }
 

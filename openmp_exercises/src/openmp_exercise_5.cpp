@@ -58,20 +58,15 @@ double trapezoid_rule_parallel() {
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    #pragma omp parallel
-    {
-        double x; // Variable to be made private
-        double local_integral = 0.0;
+    double x; // Variable to be made private
+    double local_integral = 0.0;
 
-        #pragma omp for private(x)
-        for (int i = 1; i < num_intervals; ++i) {
-            x = a + i * h;
-            local_integral += f(x);
-        }
-
-        #pragma omp atomic
-        integral += local_integral;
+    for (int i = 1; i < num_intervals; ++i) {
+        x = a + i * h;
+        local_integral += f(x);
     }
+    
+    integral += local_integral;
 
     // Add the contributions from the endpoints
     integral += (f(a) + f(b)) / 2.0;

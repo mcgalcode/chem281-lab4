@@ -38,7 +38,6 @@ double independent_work_parallel() {
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    #pragma omp parallel for
     for (int i = 0; i < N; ++i) {
         results[i] = std::sin(data[i]) + std::cos(data[i]);
     }

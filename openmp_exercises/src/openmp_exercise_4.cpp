@@ -48,7 +48,6 @@ double matrix_mult_collapse_parallel() {
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    #pragma omp parallel for collapse(3)
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
             for (int k = 0; k < N; ++k) {

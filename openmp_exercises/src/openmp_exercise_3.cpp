@@ -31,9 +31,8 @@ double array_sum_reduction_serial() {
     return elapsed.count();
 }
 
-/* PARALLELIZE ME - Change anything you want in here, just make
-    sure the elapsed time is still the return value
-    Try to use the #pragma omp atomic clause to handle this one
+/* PARALLELIZE ME - 
+    Try to use a reduction clause to handle this one
 */
 double array_sum_reduction_parallel() {
     const int N = 1000000;
@@ -42,7 +41,6 @@ double array_sum_reduction_parallel() {
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    #pragma omp parallel for reduction(+:sum)
     for (int i = 0; i < N; ++i) {
         sum += data[i];
     }
