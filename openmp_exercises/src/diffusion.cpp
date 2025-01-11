@@ -93,9 +93,8 @@ void solve_diffusion(std::vector<double>& C, std::vector<double>& C_new, double 
          * 
          * 2. Parallelize the loop using OpenMP
          *  *************************************************************************/
-        #pragma omp parallel for
         for (int i = 1; i < N - 1; ++i) {
-            C_new[i] = C[i] + D * dt / (dx * dx) * (C[i + 1] - 2 * C[i] + C[i - 1]);
+            // update C_new here
         }
 
         // Apply boundary conditions
